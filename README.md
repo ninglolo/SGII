@@ -1,5 +1,5 @@
 # SGII
-In this work, we used the Systemic Gene importance Index (SGII) to systematically identify essential lncRNAs in mouse and human genome based on the lncRNA-protein heterogeneous interaction network. The ```'data'``` folder stores the data needed in the experiment, including mouse and human data. The ```'src'``` folder contains the code used in the method SGII. The ```'result'``` folder holds the results for mouse and human, including the score results of lncRNAs using BC, CC, DC, EC and GIC methods.
+In this work, we used the Systemic Gene Importance Index (SGII) to systematically identify essential lncRNAs in mouse and human genome based on the lncRNA-protein heterogeneous interaction network. The ```'data'``` folder stores the data needed in the experiment, including mouse and human data. The ```'src'``` folder contains the code used in the method SGII. The ```'result'``` folder holds the results for mouse and human, including the score results of lncRNAs using BC, CC, DC, EC and GIC methods.
 
 # Run
 To run our supplied program, you need to configure the python 3 environment.
