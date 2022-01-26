@@ -7,12 +7,6 @@ import math
 import string
 import xlwt
 
-'''
-LRMODEL_FEATURES_7 = ['intercept', 'length', 'eng/L', 'cga', 'gcg', 'tcg', 'acg', 'tca']
-LRMODEL_COEFS_7 = [0.1625, 2.638e-04, 2.194, 19.88, 37.59, 50.37, 35.44, -64.66] # +/- sample ratio 1:1
-LRMODEL_7 = dict(zip(LRMODEL_FEATURES_7, LRMODEL_COEFS_7))
-'''
-
 BASES = ['a', 't', 'c', 'g']
 TRIPLETS = []
 for B1 in BASES:
@@ -20,7 +14,7 @@ for B1 in BASES:
         for B3 in BASES:
             TRIPLETS.append(B1+B2+B3)
 
-mers = {} #先构造一个列表，存放三联体的个数都初始化为0
+mers = {} #construct a list of triplets that are initialized to 0
 
 def readlnc_transID(filename):
     f = open(filename,'r')
@@ -70,7 +64,7 @@ def readfasta(filename):
             res[ID] += line
     return res
 
-def slidingWindow(seq, l, win, step=1): #滑动窗口
+def slidingWindow(seq, l, win, step=1): #sliding window
     length = l
     mod = divmod((length-win), step)[1]
     if (win >= length):
@@ -87,7 +81,7 @@ def slidingWindow(seq, l, win, step=1): #滑动窗口
             fragments.append(seq[(length-win):])
         return fragments
  
-def stat3mer(seq, l):   #计算频率
+def stat3mer(seq, l):   #calculate the frequency
     freq = {}
     for item in TRIPLETS:
         mers[item] = 0
@@ -112,13 +106,13 @@ if __name__ == '__main__':
 
     LRMODEL_FEATURES_7 = ['intercept', 'length', 'eng/L', 'cga', 'gcg', 'tcg', 'acg', 'tca']
     if sys.argv[1] == 'mouse':
-        LRMODEL_COEFS_7 = [0.1625, 2.638e-04, 2.194, 19.88, 37.59, 50.37, 35.44, -64.66] # +/- sample ratio 1:1
+        LRMODEL_COEFS_7 = [0.1625, 2.638e-04, 2.194, 19.88, 37.59, 50.37, 35.44, -64.66]
     if sys.argv[1] == 'human':
-        LRMODEL_COEFS_7 = [0.7417, 2.612e-04, 4.295, 48.66, 15.64, 76.23, -1.113, -60.29] # +/- sample ratio 1:1
+        LRMODEL_COEFS_7 = [0.7417, 2.612e-04, 4.295, 48.66, 15.64, 76.23, -1.113, -60.29]
     LRMODEL_7 = dict(zip(LRMODEL_FEATURES_7, LRMODEL_COEFS_7))
 
            
-    features_trans = {}  #计算出每个转录本的特征值
+    features_trans = {}  #calculated the eigenvalues of each transcript
     for k,v in trans_seq.items():
         feature = {}
         seq = v.replace('\n','')
@@ -134,7 +128,7 @@ if __name__ == '__main__':
         feature['GIC_7'] = gic
         features_trans[k] = feature
 
-    lncRNA_GIC_score = {}  #计算出每个lnc基因的特征值（一个基因可能包括多个转录本）
+    lncRNA_GIC_score = {}  #calculated the eigenvalues of each lncRNA
     for k,v in lnc_transID.items():
         feature = {}
         feature['length'] = 0
