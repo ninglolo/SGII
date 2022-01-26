@@ -3,7 +3,7 @@ import csv
 import numpy as np
 import networkx as nx
 
-
+# Read lncrNA-protein interactions
 def readLPI(filename):
     fLPI = open(filename,'r')
     lnc_protein = {}
@@ -30,7 +30,8 @@ if __name__ == '__main__':
     savePath = '../result/'+ sys.argv[1] + '/'
     
     lnc_protein = readLPI(dataPath+'LPI.csv')
-
+    
+    # construct lncRNA-protein-protein interaction network
     g=nx.Graph()
     fnet = open(dataPath+'LPPI.csv', 'r')
     for line in fnet:
@@ -38,7 +39,7 @@ if __name__ == '__main__':
         data = line.split(',')
         g.add_edge(data[0], data[1])
 
-
+    # calculate DC scores
     fDC = open(savePath+'DC_score_allLncRNAs.csv','w')
     fDC.write('lncRNA,score'+'\n')
     den_cn = nx.degree_centrality(g)
@@ -48,7 +49,7 @@ if __name__ == '__main__':
     fDC.close()
     print('DC finished')
 
-
+    # calculate BC scores
     fBC = open(savePath+'BC_score_allLncRNAs.csv','w')
     fBC.write('lncRNA,score'+'\n')
     bet_cn = nx.betweenness_centrality (g)
@@ -58,7 +59,7 @@ if __name__ == '__main__':
     fBC.close()
     print('BC finished')
 
-
+    # calculate CC scores
     fCC = open(savePath+'CC_score_allLncRNAs.csv','w')
     fCC.write('lncRNA,score'+'\n')
     cen_cn = nx.closeness_centrality(g)
@@ -68,7 +69,7 @@ if __name__ == '__main__':
     fCC.close()
     print('CC finished')
 
-
+    # calculate EC scores
     fEC = open(savePath+'EC_score_allLncRNAs.csv','w')
     fEC.write('lncRNA,score'+'\n')
     eig_cen = nx.eigenvector_centrality(g, max_iter=3000)
