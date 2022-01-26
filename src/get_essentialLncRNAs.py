@@ -1,7 +1,7 @@
 import sys
 import csv
 
-#获取每个lncRNA的度
+# obtain the degree of each lncRNA
 def getS(filename):
     fLPI = open(filename,'r')
     lnc_protein = {}
@@ -25,7 +25,7 @@ def getS(filename):
     return s
 
 
-#获取每个lncRNA的排名
+# obtain the ranking of each lncRNA
 def getRank(filename):
     lnc = []
     f = open(filename, 'r')
@@ -42,7 +42,7 @@ def getRank(filename):
     return rank
 
 
-#获取关键lncRNAs
+# obtain SGII prediction result under different parameter combinations
 def getEssentialLncRNAs(K, T, z):
     lnc_bigger_z = []
     lnc_smaller_z = []
