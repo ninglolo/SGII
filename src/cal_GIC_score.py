@@ -7,6 +7,7 @@ import math
 import string
 import xlwt
 
+# record all triplet combinations
 BASES = ['a', 't', 'c', 'g']
 TRIPLETS = []
 for B1 in BASES:
