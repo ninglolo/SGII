@@ -1,7 +1,7 @@
 import sys
 import csv
 
-
+# Obtain the lncRNAs that meet the sequence length requirements
 def get_GIC_lncRNAs(GIC_score):
     fGIC = open(GIC_score,'r')
     GIC_lnc = []
@@ -14,6 +14,7 @@ def get_GIC_lncRNAs(GIC_score):
     print(len(GIC_lnc))
     return GIC_lnc
 
+# obtain various centrality scores of lncRNAs meeting sequence length requirements and save them in files
 def get_centrality_score_valid(filename_all, filename_valid):
     f_all = open(filename_all,'r')
     f_valid = open(filename_valid,'w')
