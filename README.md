@@ -44,4 +44,8 @@ Parameters involved in commands:
 + K: the threshold of the centrality method
 + T: GIC method threshold
 + z: Degree threshold
-+ centrality: centrality method, include BC, CC, DC, EC
++ centrality: one centrality method of BC, CC, DC, EC
++ centrality_1/centrality_2: one centrality method of BC, CC, DC, EC, centrality_1 and centrality_2 have different values
+
+When we calculated the performance of different combinations of methods, we calculated not only the performance of humans and mice, but also the mouse homologous of human.
+
