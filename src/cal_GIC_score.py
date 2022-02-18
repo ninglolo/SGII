@@ -16,6 +16,7 @@ for B1 in BASES:
 
 mers = {} #construct a list of triplets that are initialized to 0
 
+# obtain the corresponding relationship between lncRNA and transcript
 def readlnc_transID(filename):
     f = open(filename,'r')
     lnc_transID = {}
@@ -37,6 +38,7 @@ def readlnc_transID(filename):
                 lnc_transID[ncName].append(transID)
     return lnc_transID
 
+# obain the secondary structure minimum free energy of each transcript of lncRNA
 def readlnc_eng(filename):
     f = open(filename,'r')
     lnc_eng = {}
@@ -52,6 +54,7 @@ def readlnc_eng(filename):
             lnc_eng[transID] = float(eng)
     return lnc_eng
 
+# Get transcript sequence
 def readfasta(filename):
     f = open(filename,'r')
     res = {}
@@ -64,7 +67,8 @@ def readfasta(filename):
             res[ID] += line
     return res
 
-def slidingWindow(seq, l, win, step=1): #sliding window
+#sliding window
+def slidingWindow(seq, l, win, step=1): 
     length = l
     mod = divmod((length-win), step)[1]
     if (win >= length):
@@ -81,7 +85,8 @@ def slidingWindow(seq, l, win, step=1): #sliding window
             fragments.append(seq[(length-win):])
         return fragments
  
-def stat3mer(seq, l):   #calculate the frequency
+#calculate the frequency of the triplet
+def stat3mer(seq, l):   
     freq = {}
     for item in TRIPLETS:
         mers[item] = 0
@@ -103,7 +108,7 @@ if __name__ == '__main__':
     lnc_eng = readlnc_eng(dataPath+'eng.csv')
     trans_seq = readfasta(dataPath+'transcripts_seq.fasta')
 
-
+    # parameter Settings of GIC
     LRMODEL_FEATURES_7 = ['intercept', 'length', 'eng/L', 'cga', 'gcg', 'tcg', 'acg', 'tca']
     if sys.argv[1] == 'mouse':
         LRMODEL_COEFS_7 = [0.1625, 2.638e-04, 2.194, 19.88, 37.59, 50.37, 35.44, -64.66]
@@ -111,8 +116,8 @@ if __name__ == '__main__':
         LRMODEL_COEFS_7 = [0.7417, 2.612e-04, 4.295, 48.66, 15.64, 76.23, -1.113, -60.29]
     LRMODEL_7 = dict(zip(LRMODEL_FEATURES_7, LRMODEL_COEFS_7))
 
-           
-    features_trans = {}  #calculated the eigenvalues of each transcript
+    #calculated the eigenvalues of each transcript
+    features_trans = {}  
     for k,v in trans_seq.items():
         feature = {}
         seq = v.replace('\n','')
@@ -127,8 +132,9 @@ if __name__ == '__main__':
         gic = math.exp(tmp)/(math.exp(tmp)+1)
         feature['GIC_7'] = gic
         features_trans[k] = feature
-
-    lncRNA_GIC_score = {}  #calculated the eigenvalues of each lncRNA
+    
+    #calculated the eigenvalues of each lncRNA
+    lncRNA_GIC_score = {}  
     for k,v in lnc_transID.items():
         feature = {}
         feature['length'] = 0
@@ -156,8 +162,11 @@ if __name__ == '__main__':
             gic = math.exp(tmp)/(math.exp(tmp)+1)
             feature['GIC_score'] = gic
             lncRNA_GIC_score[k] = feature['GIC_score']
-
+    
+    # sort all LncRNAs according to GIC scores
     lncRNA_GIC_score = sorted(lncRNA_GIC_score.items(),key=lambda d:d[1],reverse=True)
+    
+    # Write the sorted result to a file
     f = open(savePath+'GIC_score.csv', 'w')
     f.write('lncRNA'+','+'score'+'\n')
     for k in lncRNA_GIC_score:
