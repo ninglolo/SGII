@@ -1,5 +1,5 @@
 # SGII
-In this work, we used the Systemic Gene Importance Index (SGII) to systematically identify essential lncRNAs in mouse and human genome based on the lncRNA-protein heterogeneous interaction network. The ```'data'``` folder stores the data needed in the experiment, including mouse and human data. The ```'src'``` folder contains the code used in the method SGII. The ```'result'``` folder holds the results for mouse and human, including the score results of lncRNAs using BC, CC, DC, EC and GIC methods.
+In this work, we used the Systemic Gene Importance Index (SGII) to systematically identify essential lncRNAs in mouse and human genome based on the lncRNA-protein heterogeneous interaction network. The ```'data'``` folder stores the data needed in the experiment, including mouse and human data. The ```'src'``` folder contains the code used in the method SGII. The ```'result'``` folder contains the ```'human'``` folder, ```'mouse'``` folder and ```'performance'``` folder. The ```'human'``` folder and  ```'mouse'``` folder include the score results of lncRNAs using BC, CC, DC, EC and GIC methods, and the ```'performance'``` folder contains the performance results obtained by combining different methods.
 
 # Run
 To run our supplied program, you need to configure the python 3 environment.
@@ -26,15 +26,15 @@ python src/get_essentialLncRNAs.py {organism} {K} {T} {z}
 ```
 python cal_performance_GIC.py {human/mouse/mouseHomologousOfHuman}
 ```
-+ one centrality method combined with GIC
++ one centrality combined with GIC
 ```
 python cal_performance_oneCentrality+GIC.py {human/mouse/mouseHomologousOfHuman} {centrality}
 ```
-+ two centralities method combined with GIC
++ two centralities combined with GIC
 ```
 python cal_performance_twoCentrality+GIC.py {human/mouse/mouseHomologousOfHuman} {centrality_1} {centrality_2}
 ```
-+ four centralities method combined with GIC
++ four centralities combined with GIC
 ```
 python cal_performance_fourCentrality+GIC.py {human/mouse/mouseHomologousOfHuman}
 ```
@@ -44,3 +44,4 @@ Parameters involved in commands:
 + K: the threshold of the centrality method
 + T: GIC method threshold
 + z: Degree threshold
++ centrality: centrality method, include BC, CC, DC, EC
