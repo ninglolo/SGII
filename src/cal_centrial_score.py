@@ -23,7 +23,6 @@ def readLPI(filename):
     return lnc_protein
 
     
-
 if __name__ == '__main__':
 
     dataPath = '../data/'+ sys.argv[1] + '/'
