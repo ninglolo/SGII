@@ -4,18 +4,39 @@ In this work, we used the Systemic Gene Importance Index (SGII) to systematicall
 # Run
 To run our supplied program, you need to configure the python 3 environment.
 
-Run our code with the following command:
-+ Calculate the BC, CC, DC, and EC scores of lncRNAs:
+Run our code with the following process:
+1. Calculate the BC, CC, DC, and EC scores of lncRNAs:
 ```
 python src/cal_centrality_score.py {organism} 
 ```
-+ Calculate the GIC scores of lncRNAs:
+2. Calculate the GIC scores of lncRNAs:
 ```
 python src/cal_GIC_score.py {organism}
 ```
-+ Generate essential lncRNAs result set:
+3. Obtain various centrality scores of lncRNAs satisfying sequence length requirements:
+```
+get_centrial_score_valid.py {organism}
+```
+4. Generate essential lncRNAs result set:
 ```
 python src/get_essentialLncRNAs.py {organism} {K} {T} {z}
+```
+5. Calculate the performance of different combinations of methods:
++ only GIC
+```
+python cal_performance_GIC.py {human/mouse/mouseHomologousOfHuman}
+```
++ one centrality method combined with GIC
+```
+python cal_performance_oneCentrality+GIC.py {human/mouse/mouseHomologousOfHuman} {centrality}
+```
++ two centralities method combined with GIC
+```
+python cal_performance_twoCentrality+GIC.py {human/mouse/mouseHomologousOfHuman} {centrality_1} {centrality_2}
+```
++ four centralities method combined with GIC
+```
+python cal_performance_fourCentrality+GIC.py {human/mouse/mouseHomologousOfHuman}
 ```
 
 Parameters involved in commands:
