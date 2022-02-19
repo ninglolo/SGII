@@ -149,7 +149,6 @@ if __name__ == '__main__':
                 sen = n00/M  #sensitivity
 
                 oddsRatio, FET_p = stats.fisher_exact([[n00, n01], [n10, n11]]) # calculate fisher's exact test index
-                log_oddsRatio = math.log10(oddsRatio)
                 FET_p = -1 * math.log10(FET_p)
 
                 FPR = round(n10/(N-M),6)
