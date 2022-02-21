@@ -25,8 +25,8 @@ def readLPI(filename):
     
 if __name__ == '__main__':
 
-    dataPath = '../data/'+ sys.argv[1] + '/'
-    savePath = '../result/'+ sys.argv[1] + '/'
+    dataPath = '../data/'+ sys.argv[1] + '/'  #path of source files
+    savePath = '../result/'+ sys.argv[1] + '/' #save path of result files
     
     lnc_protein = readLPI(dataPath+'LPI.csv')
     
@@ -36,13 +36,13 @@ if __name__ == '__main__':
     for line in fnet:
         line = line.strip()
         data = line.split(',')
-        g.add_edge(data[0], data[1])
+        g.add_edge(data[0], data[1])  #add edges to the network
 
     # calculate DC scores
     fDC = open(savePath+'DC_score_allLncRNAs.csv','w')
     fDC.write('lncRNA,score'+'\n')
     den_cn = nx.degree_centrality(g)
-    for k in sorted(den_cn,key=den_cn.__getitem__,reverse=True):
+    for k in sorted(den_cn,key=den_cn.__getitem__,reverse=True):  #sort LncRNAs in descending order of scores
         if k in lnc_protein:
             fDC.write(str(k)+','+str(den_cn[k])+'\n')
     fDC.close()
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     fBC = open(savePath+'BC_score_allLncRNAs.csv','w')
     fBC.write('lncRNA,score'+'\n')
     bet_cn = nx.betweenness_centrality (g)
-    for k in sorted(bet_cn,key=bet_cn.__getitem__,reverse=True):
+    for k in sorted(bet_cn,key=bet_cn.__getitem__,reverse=True):  #sort LncRNAs in descending order of scores
         if k in lnc_protein:
             fBC.write(str(k)+','+str(bet_cn[k])+'\n')
     fBC.close()
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     fCC = open(savePath+'CC_score_allLncRNAs.csv','w')
     fCC.write('lncRNA,score'+'\n')
     cen_cn = nx.closeness_centrality(g)
-    for k in sorted(cen_cn,key=cen_cn.__getitem__,reverse=True):
+    for k in sorted(cen_cn,key=cen_cn.__getitem__,reverse=True):  #sort LncRNAs in descending order of scores
         if k in lnc_protein:
             fCC.write(str(k)+','+str(cen_cn[k])+'\n')
     fCC.close()
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     fEC = open(savePath+'EC_score_allLncRNAs.csv','w')
     fEC.write('lncRNA,score'+'\n')
     eig_cen = nx.eigenvector_centrality(g, max_iter=3000)
-    for k in sorted(eig_cen,key=eig_cen.__getitem__,reverse=True):
+    for k in sorted(eig_cen,key=eig_cen.__getitem__,reverse=True):  #sort LncRNAs in descending order of scores
         if k in lnc_protein:
             fEC.write(str(k)+','+str(eig_cen[k])+'\n')
     fEC.close()
