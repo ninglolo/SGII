@@ -33,8 +33,8 @@ def get_centrality_score_valid(filename_all, filename_valid):
 
 if __name__ == '__main__':
     
-    dataPath = '../result/'+ sys.argv[1] + '/'
-    savePath = '../result/'+ sys.argv[1] + '/'
+    dataPath = '../result/'+ sys.argv[1] + '/' #path of source files
+    savePath = '../result/'+ sys.argv[1] + '/' #save path of result files
 
     GIC_lnc = get_GIC_lncRNAs(dataPath+'GIC_score.csv')
     DC_score = get_centrality_score_valid(dataPath+'DC_score_allLncRNAs.csv',dataPath+'DC_score.csv')
