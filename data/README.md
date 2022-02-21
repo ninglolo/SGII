@@ -20,3 +20,4 @@ Download address: https://downloads.thebiogrid.org/Download/BioGRID/Release-Arch
 + LPI.csv: LncRNA-protein interaction (LPI) data.
 + PPI.csv: Protein-protein interaction (PPI) data.
 + LPPI.csv: LncRNA-protein-protein interaction (LPPI) data, composed of LPI.csv and PPI.csv. In order to prevent the protein and lncRNA from having the same name, we marked all the proteins with '<####>' as their name suffix when constructing LPPI.csv
++ esslnc_homo.txt: Known 63 potential essential LncRNAs of human.
