@@ -20,7 +20,7 @@ mers = {} #construct a list of triplets that are initialized to 0
 # obtain the corresponding relationship between lncRNA and transcript
 def readlnc_transID(filename):
     f = open(filename,'r')
-    lnc_transID = {}
+    lnc_transID = {} #preserve the mapping relationship between genes and transcripts
     ncName = ''
     transID = ''
     for line in f:
@@ -42,7 +42,7 @@ def readlnc_transID(filename):
 # obain the secondary structure minimum free energy of each transcript of lncRNA
 def readlnc_eng(filename):
     f = open(filename,'r')
-    lnc_eng = {}
+    lnc_eng = {} #Preserve transcripts and their minimum free energy of secondary structure
     for line in f:
         line = line.strip()
         data = line.split(',')
@@ -58,7 +58,7 @@ def readlnc_eng(filename):
 # Get transcript sequence
 def readfasta(filename):
     f = open(filename,'r')
-    res = {}
+    res = {} #Preserve transcripts and their sequence
     for line in f:
         if line.startswith('>'):
             line = line.strip()
@@ -102,8 +102,8 @@ def stat3mer(seq, l):
 
 if __name__ == '__main__':
 
-    dataPath = '../data/'+ sys.argv[1] + '/'
-    savePath = '../result/'+ sys.argv[1] + '/'
+    dataPath = '../data/'+ sys.argv[1] + '/'  #path of source files
+    savePath = '../result/'+ sys.argv[1] + '/'  #save path of result files
     
     lnc_transID = readlnc_transID(dataPath+'ncName_ncID_transID.csv')
     lnc_eng = readlnc_eng(dataPath+'eng.csv')
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     LRMODEL_7 = dict(zip(LRMODEL_FEATURES_7, LRMODEL_COEFS_7))
 
     #calculated the eigenvalues of each transcript
-    features_trans = {}  
+    features_trans = {}  #save the features of each transcript
     for k,v in trans_seq.items():
         feature = {}
         seq = v.replace('\n','')
@@ -135,10 +135,10 @@ if __name__ == '__main__':
         features_trans[k] = feature
     
     #calculated the eigenvalues of each lncRNA
-    lncRNA_GIC_score = {}  
+    lncRNA_GIC_score = {}  ##save the GIC score of each lncRNA
     for k,v in lnc_transID.items():
-        feature = {}
-        feature['length'] = 0
+        feature = {} #save the features of lncRNA gene
+        feature['length'] = 0 # initialize the value of each feature to 0
         feature['eng/L'] = 0
         for item in TRIPLETS:
             feature[item] = 0
