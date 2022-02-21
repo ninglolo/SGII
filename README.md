@@ -57,5 +57,7 @@ Parameters involved in commands:
 + centrality: one centrality method of BC, CC, DC, EC
 + centrality_1/centrality_2: one centrality method of BC, CC, DC, EC, centrality_1 and centrality_2 have different values
 
-When we calculated the performance of different combinations of methods, we calculated not only the performance of humans and mice, but also the mouse homologous of human.
+When we calculated the performance of different combinations of methods, we calculated not only the performance of humans and mouse, but also the mouse homologous to human.
+
+The detailed explanations of the above files are saved in the ```'data'``` and ```'result'``` folders respectively.
 
