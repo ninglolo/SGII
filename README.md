@@ -46,7 +46,7 @@ python cal_performance_twoCentrality+GIC.py {human/mouse/mouseHomologousOfHuman}
 ```
 python cal_performance_fourCentrality+GIC.py {human/mouse/mouseHomologousOfHuman}
 ```
-In this step, we run the code using files BC_score.csv, CC_score.csv, DC_score.csv, EC_score.csv and GIC_score.csv, which are saved in the ```'result'``` folder. In addition, when calculating the prediction performance of human, we need the file esslnc_ homo.csv, which is saved in the ```'data'``` folder. Finally, we save the performance results in the folder ```'result/ performance'```.
+In this step, we run the above codes using files BC_score.csv, CC_score.csv, DC_score.csv, EC_score.csv and GIC_score.csv, which are saved in the ```'result'``` folder. In addition, when calculating the prediction performance of human, we need the file esslnc_ homo.csv, which is saved in the ```'data'``` folder. Finally, we save the performance results in the folder ```'result/ performance'```.
 
 
 Parameters involved in commands:
