@@ -5,19 +5,19 @@ In this work, we used the Systemic Gene Importance Index (SGII) to systematicall
 To run our supplied program, you need to configure the python 3 environment.
 
 Run our code with the following steps:
-1. Calculate the BC, CC, DC, and EC scores of lncRNAs:
+1. Calculate the BC, CC, DC, and EC scores of all lncRNAs in the LPPI network:
 ```
 python src/cal_centrality_score.py {organism} 
 ```
 In this step, we we run the code using files LPI.csv and LPPI.csv, which are stored in the ```'data'``` folder. The results of running the code are stored in the ```'result'``` folder, named BC_score_allLncRNAs.csv, CC_score_allLncRNAs.csv, DC_score_allLncRNAs.csv and EC_score_allLncRNAs.csv, respectively.
 
-2. Calculate the GIC scores of lncRNAs:
+2. Calculate the GIC scores of lncRNAs that meet the sequence length requirements of external program RNAfold:
 ```
 python src/cal_GIC_score.py {organism}
 ```
 In this step, we run the code using files ncName_ncID_transID.csv, eng.csv and transcripts_seq.fasta, which are stored in the ```'data'``` folder. The result from running the code are stored in the ```'result'``` folder, named GIC_score.csv.
 
-3. Obtain various centrality scores of lncRNAs satisfying sequence length requirements:
+3. Obtain various centrality scores of lncRNAs satisfying sequence length requirements of RNAfold:
 ```
 get_centrial_score_valid.py {organism}
 ```
